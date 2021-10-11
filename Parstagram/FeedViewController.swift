@@ -25,6 +25,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         commentBar.inputTextView.placeholder = "Add a comment..."
         commentBar.sendButton.title = "Post"
+        commentBar.delegate = self
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -67,7 +68,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         // create the comment
         let comment = PFObject(className: "Comments")
-            comment["text"] = "This is a random comment"
+            comment["text"] = text // "This is a random comment"
             comment["post"] = selectedPost
             comment["author"] = PFUser.current()!
     
